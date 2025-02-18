@@ -1,0 +1,69 @@
+{
+  "name": "@rcb-plugins/markdown-renderer",
+  "homepage": "https://github.com/React-ChatBotify-Plugins/markdown-renderer",
+  "keywords": [
+    "react",
+    "chat",
+    "chatbot",
+    "conversational-bot",
+    "conversational-ui",
+    "frontend-library",
+    "plugins"
+  ],
+  "files": [
+    "./dist"
+  ],
+  "version": "0.1.0",
+  "description": "A simple plugin for rendering markdown messages in React ChatBotify.",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "start": "vite serve",
+    "build": "tsc -b && vite build",
+    "lint": "eslint --fix \"**/*.{ts,tsx}\"",
+    "preview": "vite preview",
+    "prepack": "tsc && vite build"
+  },
+  "author": "tjtanjin",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/React-ChatBotify-Plugins/markdown-renderer"
+  },
+  "peerDependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.20.0",
+    "@types/react": "^18.3.6",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "eslint": "^9.20.1",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^15.15.0",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.24.0",
+    "vite": "^6.1.0",
+    "vite-plugin-eslint2": "^5.0.3"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "^4.34.7"
+  },
+  "dependencies": {
+    "react-markdown": "^9.0.3"
+  }
+}

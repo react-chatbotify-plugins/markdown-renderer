@@ -1,0 +1,115 @@
+name: Publish Releases
+run-name: Publish Releases
+
+permissions:
+  contents: write
+
+on:
+  workflow_dispatch:
+    inputs:
+      publish_to_github:
+        description: 'Publish to GitHub Release'
+        required: false
+        default: 'false'
+        type: boolean
+      publish_to_npm:
+        description: 'Publish to npm'
+        required: false
+        default: 'false'
+        type: boolean
+      github_tag:
+        description: 'Release tag for GitHub (e.g., v1.0.0)'
+        required: false
+        type: string
+      github_release_notes:
+        description: 'Release notes for GitHub'
+        required: false
+        type: string
+      npm_version:
+        description: 'npm package version (e.g., 1.0.0)'
+        required: false
+        type: string
+      npm_release_notes:
+        description: 'Release notes for npm'
+        required: false
+        type: string
+
+jobs:
+  publish_github_release:
+    name: Publish to GitHub Release
+    if: ${{ github.event.inputs.publish_to_github == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.4.1"
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1.1.4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.event.inputs.github_tag }}
+          release_name: Release ${{ github.event.inputs.github_tag }}
+          body: ${{ github.event.inputs.github_release_notes }}
+          draft: false
+          prerelease: false
+
+      - name: Package Plugin
+        id: package_plugin
+        run: |
+          npm pack
+          echo "PACKAGE_NAME=$(ls *.tgz)" >> $GITHUB_ENV
+
+      - name: Upload Release Asset
+        if: ${{ github.event.inputs.github_tag }}
+        uses: actions/upload-release-asset@v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ env.PACKAGE_NAME }}
+          asset_name: ${{ env.PACKAGE_NAME }}
+          asset_content_type: application/gzip
+
+  publish_npm_release:
+    name: Publish to npm
+    if: ${{ github.event.inputs.publish_to_npm == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.4.1"
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Project
+        run: npm run build --if-present
+
+      - name: Update package version
+        if: ${{ github.event.inputs.npm_version }}
+        run: |
+          npm version ${{ github.event.inputs.npm_version }} --no-git-tag-version
+          git config --global user.email "${{ secrets.GIT_USER_EMAIL }}"
+          git config --global user.name "${{ secrets.GIT_USER_NAME }}"
+          git add package.json
+          git commit -m "chore: release version ${{ github.event.inputs.npm_version }}"
+          git push
+
+      - name: Publish to npm
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
