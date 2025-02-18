@@ -32,7 +32,6 @@ const App = () => {
 	return (
 		<ChatBot
 			id="chatbot-id"
-			settings={{botBubble: {simStream: true}, userBubble: {simStream: true}}}
 			plugins={plugins}
 			flow={flow}
 		></ChatBot>
