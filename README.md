@@ -81,6 +81,7 @@ The quickstart above shows how rendering of markdown can be done for both bot an
 **Markdown Renderer** is a lightweight plugin that provides the following features to your chatbot:
 - Render markdown in bot chat messages
 - Render markdown in user chat messages
+- Optionally pass in your own custom markdown component to render markdown your way
 
 ### API Documentation
 
@@ -109,6 +110,7 @@ As you may be able to tell from above, there are 5 configurable sections within 
 | Configuration Option         | Type     | Default Value                                                                                                                                                                                                                 | Description                                                                                                               |
 |------------------------------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
 | `autoConfig`                 | boolean  | `true`                                                                                                                                                                                                                        | Enables automatic configuration of required events for markdown rendering. Recommended to keep as `true`. If set to `false`, you need to configure events manually. |
+| `markdownComponent`                 | React.ComponentType<{ children: React.ReactNode }>  | `null`                                                                                                                                                                                                                        | A React component to wrap around the message's content to customize its styling, layout, or behavior. The component will receive the message's content as its children prop, so you can design it to add custom formatting, animations, or other UI enhancements. If not provided, a default wrapper from **react-markdown** will be used. |
 
 #### Rendering Markdown
 
