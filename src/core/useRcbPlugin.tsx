@@ -6,6 +6,9 @@ import {
 	RcbPreInjectMessageEvent,
 	Plugin,
 	RcbStartStreamMessageEvent,
+	useMessages,
+	useChatHistory,
+	useSettings,
 } from "react-chatbotify";
 
 import MarkdownWrapper from "../components/MarkdownWrapper";
@@ -21,11 +24,27 @@ import { shouldRenderMarkdown } from "../utils/renderConditionHelper";
 const useRcbPlugin = (pluginConfig?: PluginConfig) => {
 	const { getBotId } = useBotId();
 	const { getFlow } = useFlow();
+	const { messages, replaceMessages } = useMessages();
+	const { settings } = useSettings();
+	const { hasChatHistoryLoaded } = useChatHistory();
 
 	const mergedPluginConfig = { ...pluginConfig, ...DefaultPluginConfig };
 
 	// if custom component provided, use it; otherwise defaults to react-markdown
 	const component = mergedPluginConfig.markdownComponent ? mergedPluginConfig.markdownComponent : MarkdownWrapper;
+
+	useEffect(() => {
+		if (hasChatHistoryLoaded) {
+			const messagesCopy = [...messages];
+			for (let i = 0; i < messagesCopy.length && i < (settings.chatHistory?.maxEntries ?? 30); i++) {
+				const message = messagesCopy[i];
+				if (message.tags?.includes("rcb-markdown-renderer-plugin:parsed")) {
+				message.contentWrapper = component;
+				}
+			}
+			replaceMessages(messagesCopy);
+		}
+	}, [hasChatHistoryLoaded]);
 
 	useEffect(() => {
 		/**
@@ -45,6 +64,10 @@ const useRcbPlugin = (pluginConfig?: PluginConfig) => {
 
 
 			event.data.message.contentWrapper = component;
+			if (!event.data.message.tags) {
+				event.data.message.tags = [];
+			}
+			event.data.message.tags.push("rcb-markdown-renderer-plugin:parsed");
 		};
 
 		// adds required events
