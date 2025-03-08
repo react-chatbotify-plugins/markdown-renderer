@@ -11,7 +11,7 @@ import {
 	useSettings,
 } from "react-chatbotify";
 
-import MarkdownWrapper from "../components/MarkdownWrapper";
+import MarkdownLatexWrapper from "../components/MarkdownLatexWrapper";
 import { PluginConfig } from "../types/PluginConfig";
 import { DefaultPluginConfig } from "../constants/DefaultPluginConfig";
 import { shouldRenderMarkdown } from "../utils/renderConditionHelper";
@@ -31,7 +31,7 @@ const useRcbPlugin = (pluginConfig?: PluginConfig) => {
 	const mergedPluginConfig = { ...pluginConfig, ...DefaultPluginConfig };
 
 	// if custom component provided, use it; otherwise defaults to react-markdown
-	const component = mergedPluginConfig.markdownComponent ? mergedPluginConfig.markdownComponent : MarkdownWrapper;
+	const component = mergedPluginConfig.markdownLatexComponent ? mergedPluginConfig.markdownLatexComponent : MarkdownLatexWrapper;
 
 	useEffect(() => {
 		if (hasChatHistoryLoaded) {

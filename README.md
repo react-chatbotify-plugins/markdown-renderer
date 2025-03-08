@@ -1,6 +1,6 @@
 <p align="center">
-  <img width="200px" src="https://raw.githubusercontent.com/react-chatbotify-plugins/markdown-renderer/main/src/assets/logo.png" />
-  <h1 align="center">Markdown Renderer</h1>
+  <img width="200px" src="https://raw.githubusercontent.com/katjes733/markdown-latex-renderer/main/src/assets/logo.png" />
+  <h1 align="center">Markdown LaTeX Renderer</h1>
 </p>
 
 <p align="center">
@@ -11,13 +11,15 @@
 
 ## Table of Contents
 
-* [Introduction](#introduction)
-* [Quickstart](#quickstart)
-* [Features](#features)
-* [API Documentation](#api-documentation)
-* [Team](#team)
-* [Contributing](#contributing)
-* [Others](#others)
+- [Table of Contents](#table-of-contents)
+  - [Introduction](#introduction)
+  - [Quickstart](#quickstart)
+  - [Features](#features)
+  - [API Documentation](#api-documentation)
+    - [Plugin Configuration](#plugin-configuration)
+    - [Rendering Markdown](#rendering-markdown)
+  - [Team](#team)
+  - [Contributing](#contributing)
 
 ### Introduction
 
@@ -31,67 +33,68 @@ For support, join the plugin community on [**Discord**](https://discord.gg/J6pA4
 
 ### Quickstart
 
-The plugin is incredibly straightforward to use and is [**available on npm**](https://www.npmjs.com/package/@rcb-plugins/markdown-renderer). Simply follow the steps below:
+The plugin is incredibly straightforward to use and is [**available on npm**](https://www.npmjs.com/package/katjes733/markdown-latex-renderer). Simply follow the steps below:
 
 1. Install the plugin with the following command within your project folder:
    ```bash
-   npm install @rcb-plugins/markdown-renderer
+   npm install katjes733/markdown-latex-renderer
    ```
 
 2. Import the plugin:
    ```javascript
-   import MarkdownRenderer from "@rcb-plugins/markdown-renderer";
+   import MarkdownRenderer from "katjes733/markdown-latex-renderer";
    ```
 
 3. Initialize the plugin within the `plugins` prop of `ChatBot`:
    ```javascript
    import ChatBot from "react-chatbotify";
-   import MarkdownRenderer from "@rcb-plugins/markdown-renderer";
+   import MarkdownLatexRenderer from "katjes733/markdown-latex-renderer";
 
    const MyComponent = () => {
      return (
-       <ChatBot plugins=[MarkdownRenderer()]/>
+       <ChatBot plugins=[MarkdownLatexRenderer()]/>
      );
    };
    ```
 
-4. Add the `renderMarkdown` attribute to the [**Block**](https://react-chatbotify.com/docs/concepts/conversations#block) that requires markdown rendering:
+4. Add the `renderMarkdownLatex` attribute to the [**Block**](https://react-chatbotify.com/docs/concepts/conversations#block) that requires markdown rendering:
    ```javascript
    import ChatBot from "react-chatbotify";
-   import MarkdownRenderer, { MarkdownRendererBlock } from "@rcb-plugins/markdown-renderer";
+   import MarkdownLatexRenderer, { MarkdownLatexRendererBlock } from "katjes733/markdown-latex-renderer";
 
    const MyComponent = () => {
      const flow = {
        start: {
          message: "### What is your age?",
-         renderMarkdown: ["BOT", "USER"]
-       } as MarkdownRendererBlock
+         renderMarkdownLatex: ["BOT", "USER"]
+       } as MarkdownLatexRendererBlock
      }
 
      return (
-       <ChatBot plugins=[MarkdownRenderer()]/>
+       <ChatBot plugins=[MarkdownLatexRenderer()]/>
      );
    };
    ```
 
-The quickstart above shows how rendering of markdown can be done for both bot and user messages **within the start block**. The documentation website for the React ChatBotify Core Library also contains a [**live markdown renderer example**](https://react-chatbotify.com/docs/examples/markdown_render) that uses this plugin. You may wish to check it out!
+The quickstart above shows how rendering of markdown can be done for both bot and user messages **within the start block**. The documentation website for the React ChatBotify Core Library also contains a [**live markdown renderer example**](https://react-chatbotify.com/docs/examples/markdown_render) that uses the parent (fork) plugin. You may wish to check it out!
 
 ### Features
 
-**Markdown Renderer** is a lightweight plugin that provides the following features to your chatbot:
-- Render markdown in bot chat messages
-- Render markdown in user chat messages
-- Optionally pass in your own custom markdown component to render markdown your way
+**Markdown LaTeX Renderer** is a lightweight plugin that provides the following features to your chatbot:
+
+* Render markdown with LaTeX in bot chat messages
+* Render markdown with LaTeX in user chat messages
+* Optionally pass in your own custom markdown component to render markdown your way
 
 ### API Documentation
 
 #### Plugin Configuration
 
-The `MarkdownRenderer` plugin accepts a configuration object that allows you to customize its behavior and appearance. An example configuration is passed in below to initialize the plugin:
+The `MarkdownLatexRenderer` plugin accepts a configuration object that allows you to customize its behavior and appearance. An example configuration is passed in below to initialize the plugin:
 
 ```javascript
 import ChatBot from "react-chatbotify";
-import MarkdownRenderer from "@rcb-plugins/markdown-renderer";
+import MarkdownLatexRenderer from "katjes733/markdown-latex-renderer";
 
 const MyComponent = () => {
   const pluginConfig = {
@@ -100,12 +103,12 @@ const MyComponent = () => {
   }
 
   return (
-    <ChatBot plugins={[MarkdownRenderer(pluginConfig)]}/>
+    <ChatBot plugins={[MarkdownLatexRenderer(pluginConfig)]}/>
   )
 }
 ```
 
-As you may be able to tell from above, there are 5 configurable sections within the plugin configuration which are `autoConfig`, `promptBaseColors`, `promptHoveredColors`, `textAreaHighlightColors` and `advancedStyles`. These are described in the table below:
+As you may be able to tell from above, there are 2 configurable sections within the plugin configuration which are `autoConfig` and `markdownComponent`. These are described in the table below:
 
 | Configuration Option         | Type     | Default Value                                                                                                                                                                                                                 | Description                                                                                                               |
 |------------------------------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
@@ -114,39 +117,35 @@ As you may be able to tell from above, there are 5 configurable sections within 
 
 #### Rendering Markdown
 
-To render markdown in messages, add the `renderMarkdown` attribute to any Block that requires markdown rendering. The `renderMarkdown` attribute is an array that accepts `"USER"` and/or `"BOT"`. An example can be seen below:
+To render markdown in messages, add the `renderMarkdownLatex` attribute to any Block that requires markdown rendering. The `renderMarkdownLatex` attribute is an array that accepts `"USER"` and/or `"BOT"`. An example can be seen below:
 
 ```javascript
 import ChatBot from "react-chatbotify";
-import MarkdownRenderer from "@rcb-plugins/markdown-renderer";
+import MarkdownLtexRenderer from "katjes733/markdown-latex-renderer";
 
 const MyComponent = () => {
   const flow = {
     start: {
       message: "What is your age?",
-      renderMarkdown: ["USER", "BOT"],
+      renderMarkdownLatex: ["USER", "BOT"],
     },
     // ... other blocks
   };
 
   return (
-    <ChatBot plugins={[MarkdownRenderer(pluginConfig)]}/>
+    <ChatBot plugins={[MarkdownLatexRenderer(pluginConfig)]}/>
   )
 }
 ```
 
-As you can see from the example above containing a `start` block, `renderMarkdown` contains both `"USER"` and `"BOT"`, which means it will render markdown messages for both user and bot messages within the `start` block.
+As you can see from the example above containing a `start` block, `renderMarkdownLatex` contains both `"USER"` and `"BOT"`, which means it will render markdown messages for both user and bot messages within the `start` block.
 
 ### Team
 
-* [Tan Jin](https://github.com/tjtanjin)
+* [katjes733](https://github.com/katjes733)
 
 ### Contributing
 
 If you have code to contribute to the project, open a pull request from your fork and describe 
 clearly the changes and what they are intended to do (enhancement, bug fixes etc). Alternatively,
 you may simply raise bugs or suggestions by opening an issue.
-
-### Others
-
-For any questions regarding the project, please reach out for support via **[discord](https://discord.gg/J6pA4v3AMW).**

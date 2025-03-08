@@ -4,7 +4,7 @@ import {
     RcbPreInjectMessageEvent,
     RcbStartStreamMessageEvent
 } from "react-chatbotify";
-import { MarkdownRendererBlock } from "../types/MarkdownRendererBlock";
+import { MarkdownLatexRendererBlock } from "../types/MarkdownLatexRendererBlock";
 
 /**
  * Helper function to determine if markdown rendering should occur.
@@ -39,13 +39,13 @@ const shouldRenderMarkdown = (
     if (!event.detail.currPath) {
         return false;
     }
-    const currBlock = currFlow[event.detail.currPath] as MarkdownRendererBlock;
+    const currBlock = currFlow[event.detail.currPath] as MarkdownLatexRendererBlock;
     if (!currBlock) {
         return false;
     }
 
     // check if sender is included for rendering markdown
-    return currBlock.renderMarkdown?.map(elem => elem.toUpperCase()).includes(sender) ?? false;
+    return currBlock.renderMarkdownLatex?.map(elem => elem.toUpperCase()).includes(sender) ?? false;
 };
 
 export {

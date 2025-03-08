@@ -1,10 +1,10 @@
-import MarkdownRenderer from "./factory/RcbPluginFactory";
-import { MarkdownRendererBlock } from "./types/MarkdownRendererBlock";
+import MarkdownLatexRenderer from "./factory/RcbPluginFactory";
+import { MarkdownLatexRendererBlock } from "./types/MarkdownLatexRendererBlock";
 import { PluginConfig } from "./types/PluginConfig";
 
 export type {
-    MarkdownRendererBlock,
+    MarkdownLatexRendererBlock as MarkdownRendererBlock,
     PluginConfig,
 };
 
-export default MarkdownRenderer;
+export default MarkdownLatexRenderer;
