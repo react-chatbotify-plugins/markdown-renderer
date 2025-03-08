@@ -3,12 +3,6 @@
   <h1 align="center">Markdown LaTeX Renderer</h1>
 </p>
 
-<p align="center">
-  <a href="https://github.com/react-chatbotify-plugins/markdown-renderer/actions/workflows/ci-cd-pipeline.yml"> <img src="https://github.com/react-chatbotify-plugins/markdown-renderer/actions/workflows/ci-cd-pipeline.yml/badge.svg" /> </a>
-  <a href="https://www.npmjs.com/package/@rcb-plugins/markdown-renderer"> <img src="https://img.shields.io/npm/v/@rcb-plugins/markdown-renderer?logo=semver&label=version&color=%2331c854" /> </a>
-  <a href="https://www.npmjs.com/package/@rcb-plugins/markdown-renderer"> <img src="https://img.shields.io/badge/react-16--19-orange?logo=react&label=react" /> </a>
-</p>
-
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
@@ -29,26 +23,24 @@
 
 **Markdown Renderer** is a plugin that adds support for rendering markdown in chat bubbles within the [**React ChatBotify Core Library**](https://react-chatbotify.com). By default, the core library does not ship with markdown support. This plugin relies on chatbot events to intercept messages and determine if markdown rendering logic has to be applied. The demo gif above should give you a pretty good idea of what this plugin is capable of doing.
 
-For support, join the plugin community on [**Discord**](https://discord.gg/J6pA4v3AMW) to connect with other developers and get help.
-
 ### Quickstart
 
-The plugin is incredibly straightforward to use and is [**available on npm**](https://www.npmjs.com/package/katjes733/markdown-latex-renderer). Simply follow the steps below:
+The plugin is incredibly straightforward to use and is [**available on npm**](https://www.npmjs.com/package/@katjes733/markdown-latex-renderer). Simply follow the steps below:
 
 1. Install the plugin with the following command within your project folder:
    ```bash
-   npm install katjes733/markdown-latex-renderer
+   npm install @katjes733/markdown-latex-renderer
    ```
 
 2. Import the plugin:
    ```javascript
-   import MarkdownRenderer from "katjes733/markdown-latex-renderer";
+   import MarkdownRenderer from "@katjes733/markdown-latex-renderer";
    ```
 
 3. Initialize the plugin within the `plugins` prop of `ChatBot`:
    ```javascript
    import ChatBot from "react-chatbotify";
-   import MarkdownLatexRenderer from "katjes733/markdown-latex-renderer";
+   import MarkdownLatexRenderer from "@katjes733/markdown-latex-renderer";
 
    const MyComponent = () => {
      return (
@@ -60,7 +52,7 @@ The plugin is incredibly straightforward to use and is [**available on npm**](ht
 4. Add the `renderMarkdownLatex` attribute to the [**Block**](https://react-chatbotify.com/docs/concepts/conversations#block) that requires markdown rendering:
    ```javascript
    import ChatBot from "react-chatbotify";
-   import MarkdownLatexRenderer, { MarkdownLatexRendererBlock } from "katjes733/markdown-latex-renderer";
+   import MarkdownLatexRenderer, { MarkdownLatexRendererBlock } from "@katjes733/markdown-latex-renderer";
 
    const MyComponent = () => {
      const flow = {
@@ -94,7 +86,7 @@ The `MarkdownLatexRenderer` plugin accepts a configuration object that allows yo
 
 ```javascript
 import ChatBot from "react-chatbotify";
-import MarkdownLatexRenderer from "katjes733/markdown-latex-renderer";
+import MarkdownLatexRenderer from "@katjes733/markdown-latex-renderer";
 
 const MyComponent = () => {
   const pluginConfig = {
@@ -121,7 +113,7 @@ To render markdown in messages, add the `renderMarkdownLatex` attribute to any B
 
 ```javascript
 import ChatBot from "react-chatbotify";
-import MarkdownLtexRenderer from "katjes733/markdown-latex-renderer";
+import MarkdownLatexRenderer from "@katjes733/markdown-latex-renderer";
 
 const MyComponent = () => {
   const flow = {
@@ -142,10 +134,9 @@ As you can see from the example above containing a `start` block, `renderMarkdow
 
 ### Team
 
-* [katjes733](https://github.com/katjes733)
+- [katjes733](https://github.com/katjes733)
 
 ### Contributing
 
-If you have code to contribute to the project, open a pull request from your fork and describe 
-clearly the changes and what they are intended to do (enhancement, bug fixes etc). Alternatively,
-you may simply raise bugs or suggestions by opening an issue.
+If you have code to contribute to the project, open a pull request from your fork and describe clearly the changes and what they are intended to do (enhancement, bug fixes etc). 
+Alternatively, you may simply raise bugs or suggestions by opening an issue.
