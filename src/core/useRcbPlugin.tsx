@@ -9,6 +9,7 @@ import {
 	useMessages,
 	useChatHistory,
 	useSettings,
+	RcbStartSimulateStreamMessageEvent,
 } from "react-chatbotify";
 
 import MarkdownWrapper from "../components/MarkdownWrapper";
@@ -53,7 +54,8 @@ const useRcbPlugin = (pluginConfig?: PluginConfig) => {
 		 * @param event message event received
 		 */
 		const handleMessageEvent = async (
-			event: RcbPreInjectMessageEvent | RcbChunkStreamMessageEvent | RcbStartStreamMessageEvent
+			event: RcbPreInjectMessageEvent | RcbChunkStreamMessageEvent
+			| RcbStartSimulateStreamMessageEvent | RcbStartStreamMessageEvent
 		) => {
 			const sender = event.data.message?.sender.toUpperCase();
 
@@ -74,11 +76,13 @@ const useRcbPlugin = (pluginConfig?: PluginConfig) => {
 		window.addEventListener("rcb-pre-inject-message", handleMessageEvent);
 		window.addEventListener("rcb-chunk-stream-message", handleMessageEvent);
 		window.addEventListener("rcb-start-stream-message", handleMessageEvent);
+		window.addEventListener("rcb-start-simulate-stream-message", handleMessageEvent);
 
 		return () => {
 			window.removeEventListener("rcb-pre-inject-message", handleMessageEvent);
 			window.removeEventListener("rcb-chunk-stream-message", handleMessageEvent);
 			window.removeEventListener("rcb-start-stream-message", handleMessageEvent);
+			window.removeEventListener("rcb-start-simulate-stream-message", handleMessageEvent);
 		};
 	}, [getBotId, getFlow, shouldRenderMarkdown]);
 
@@ -93,6 +97,7 @@ const useRcbPlugin = (pluginConfig?: PluginConfig) => {
 			event: {
 				rcbPreInjectMessage: true,
 				rcbChunkStreamMessage: true,
+				rcbStartSimulateStreamMessage: true,
 				rcbStartStreamMessage: true,
 			},
 		};
