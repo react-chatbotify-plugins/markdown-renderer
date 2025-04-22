@@ -18,8 +18,8 @@ import {
 	RcbTextAreaChangeValueEvent,
 	RcbPreLoadChatBotEvent,
 	RcbPostLoadChatBotEvent,
-	RcbStartSimStreamMessageEvent,
-	RcbStopSimStreamMessageEvent,
+	RcbStartSimulateStreamMessageEvent,
+	RcbStopSimulateStreamMessageEvent,
 } from "react-chatbotify";
 
 declare global {
@@ -40,8 +40,8 @@ declare global {
 		// messages
 		"rcb-pre-inject-message": RcbPreInjectMessageEvent;
 		"rcb-post-inject-message": RcbPostInjectMessageEvent;
-		"rcb-start-simulate-stream-message": RcbStartSimStreamMessageEvent;
-		"rcb-stop-simulate-stream-message": RcbStopSimStreamMessageEvent;
+		"rcb-start-simulate-stream-message": RcbStartSimulateStreamMessageEvent;
+		"rcb-stop-simulate-stream-message": RcbStopSimulateStreamMessageEvent;
 		"rcb-start-stream-message": RcbStartStreamMessageEvent;
 		"rcb-chunk-stream-message": RcbChunkStreamMessageEvent;
 		"rcb-stop-stream-message": RcbStopStreamMessageEvent;
