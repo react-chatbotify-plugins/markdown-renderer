@@ -1,3 +1,8 @@
+## v0.3.0 (11-06-2025)
+
+**Added:**
+- The `renderMarkdown` attribute now accepts **any** sender types (previously only `BOT` and `USER`)
+
 ## v0.2.0 (23-04-2025)
 
 **Added:**

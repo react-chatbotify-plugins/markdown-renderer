@@ -114,7 +114,7 @@ As you may be able to tell from above, there are 5 configurable sections within 
 
 #### Rendering Markdown
 
-To render markdown in messages, add the `renderMarkdown` attribute to any Block that requires markdown rendering. The `renderMarkdown` attribute is an array that accepts `"USER"` and/or `"BOT"`. An example can be seen below:
+To render markdown in messages, add the `renderMarkdown` attribute to any Block that requires markdown rendering. The `renderMarkdown` attribute is an array that accepts senders such as `"USER"` and/or `"BOT"`. An example can be seen below:
 
 ```javascript
 import ChatBot from "react-chatbotify";
