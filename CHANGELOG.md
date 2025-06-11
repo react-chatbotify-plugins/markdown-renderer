@@ -1,3 +1,8 @@
+## v0.3.1 (12-06-2025)
+
+**Fixed:**
+- Fixed and improved markdown wrapper component
+
 ## v0.3.0 (11-06-2025)
 
 **Added:**
