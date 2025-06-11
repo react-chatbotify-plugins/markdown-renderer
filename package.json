@@ -1,5 +1,6 @@
 {
   "name": "@rcb-plugins/markdown-renderer",
+  "pluginLogo": "https://cdn.jsdelivr.net/gh/react-chatbotify-plugins/markdown-renderer@main/src/assets/logo.webp",
   "homepage": "https://github.com/React-ChatBotify-Plugins/markdown-renderer",
   "keywords": [
     "react",
