@@ -62,7 +62,7 @@ const MarkdownWrapper = ({ children }: { children: React.ReactNode }) => {
 						</li>
 					),
 
-					code({ inline, children, ...props }: React.HTMLAttributes<HTMLElement> & { inline?: boolean }) {
+					code({ inline, children }: React.HTMLAttributes<HTMLElement> & { inline?: boolean }) {
 						if (inline) {
 							return (
 								<code
